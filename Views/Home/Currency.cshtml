@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "currency exchange";
+}
+
+<link rel="stylesheet" href="~/css/currency.css" asp-append-version="true" />
+<!--font awesome-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+asp-append-version="true" />
+
+
+
+
+<div class="container">
+    <div class="wrapper">
+        <header>Convertisseur de devises</header>
+        <form>
+            <div class="amount">
+                <p>Entrer le montant</p>
+                <input type="text" value="1" />
+            </div>
+            <div class="drop-list">
+                <div class="from">
+                    <p>Pour</p>
+                    <div class="select-box">
+                        <img src="https://flagcdn.com/48x36/fr.png" alt="" />
+                        <select name="" id="">
+                            <!--options will be added using JS-->
+                        </select>
+                    </div>
+                </div>
+                @* <div class="icon"><i class="fas fa-exchange-alt"></i></div> *@
+                <div class="to">
+                    <p>Vers</p>
+                    <div class="select-box">
+                        <img src="https://flagcdn.com/48x36/dz.png" alt="" />
+                        <select name="" id="">
+                            <!--options will be added using JS-->
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="exchange_rate">Getting exchange rate...</div>
+            @* <button>Get Exchange Rate</button> *@
+        </form>
+    </div>
+</div>
+
+
+@* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> *@
+
+<script src="~/js/country-list.js" asp-append-version="true"></script>
+<script src="~/js/app.js" asp-append-version="true"></script>

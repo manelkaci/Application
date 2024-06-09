@@ -1,0 +1,244 @@
+﻿@using AGB_Bank.ViewModels;
+@model Register_ParticulierVM
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+
+@{
+    ViewData["Title"] = "Register Particulier";
+}
+@{
+    var agences = new System.Collections.Generic.Dictionary<string, int>
+        {
+            {"DELY IBRAHIM", 1}, {"EL MOURADIA", 2}, {"LES SOURCES", 3}, {"BABA HASSEN", 4},
+            {"BLIDA", 5}, {"ZERALDA", 6}, {"Les Vergers", 7}, {"BAINEM", 8}, {"BAB EL OUED", 9},
+            {"ROUIBA", 10}, {"BIRTOUTA", 11}, {"BORDJ EL BAHRI", 12}, {"BOIS DES CARS", 13},
+            {"KOUBA", 14}, {"DIDOUCHE MOURAD", 15}, {"TIZI OUZOU", 120}, {"BOUIRA", 17},
+            {"DJELFA", 18}, {"LAGHOUAT", 19}, {"GHARDAIA", 20}, {"MEDEA", 21}, {"KOLEA", 22},
+            {"BELOUIZDED", 23}, {"BARAKI", 24}, {"BOUMERDES", 25}, {"Blida Ben Boulaid", 26},
+            {"SIDI YAHHIA", 28}, {"EL BIAR", 30}, {"SETIF", 100}, {"SKIKDA", 101}, {"ANNABA", 102},
+            {"BATNA", 103}, {"BISKRA", 104}, {"BORDJ BOU ARRERIDJ", 105}, {"EL EULMA", 106},
+            {"BEJAIA", 107}, {"AKBOU", 108}, {"CONSTANTINE", 109}, {"AIN M LILA", 110},
+            {"TEBESSA", 111}, {"Annaba Seddik Ben YAHIA", 112}, {"SKIKDA 2", 113}, {"GUELMA", 114},
+            {"El Oued", 115}, {"JIJEL", 116}, {"MSILA", 117}, {"KHENCHELA", 118}, {"Constantine2", 119},
+            {"AZAZGA", 121}, {"Hassi Messaoud", 122}, {"Oran Sidi Chahmi", 200}, {"CHLEF", 201},
+            {"TLEMCEN", 202}, {"SIDI BEL ABBES", 203}, {"MOSTAGANEM", 204}, {"Oran Seddikia", 205},
+            {"MASCARA", 206}, {"TIARET", 207}, {"SAIDA", 208}, {"AIN TEMOUCHENT", 209}, {"AIN DEFLA", 210},
+            {"RELIZANE", 211}, {"ADRAR", 212}, {"Chlef El Mokrani", 213}, {"BECHAR", 214}, {"SAIDA ARCHIVE", 215},
+            {"OUARGLA", 300}
+        };
+
+    Dictionary<string, int> gl = new Dictionary<string, int>
+        {
+            { "Comptes Courants Dinars", 2500 },
+            { "Comptes de Chèques clientèle", 2504 },
+            { "Comptes de chèques personnel AGB", 2505 },
+            { "Comptes des professions libérales", 2506 },
+            { "Comptes courants commercants", 2507 },
+            { "Comptes Chèques finance Islamique", 2514 },
+            { "Livret d'épargne et d'investissement F.Islamique", 2574 },
+            { "Compte épargne non rémunéré", 2576 },
+            { "Livret d’épargne Classique", 2599 }
+        };
+
+    }
+
+
+<div class="row d-flex align-items-center justify-content-center">
+    <div class="col-md-4 card p-3 register" style="width: 550px">
+        <h2 class="text-center text-info">Register</h2>
+
+        <form asp-action="Register_Particulier" method="post" class="row g-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger" id="alert"></div>
+            <input asp-for="typeClient" type="hidden" value="particulier" />
+
+
+            <div class="col-md-6">
+                <label asp-for="FirstName" class="control-label">Nom</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="LastName" class="control-label">Prénom</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="dateNaissance" class="control-label">Date de Naissance</label>
+                <input asp-for="dateNaissance" class="form-control" type="date">
+                <span asp-validation-for="dateNaissance" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="PhoneNumber" class="control-label">Numéro de téléphone</label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="PaysNaissance" class="control-label">Pays de Naissance</label>
+                <input asp-for="PaysNaissance" class="form-control" />
+                <span asp-validation-for="PaysNaissance" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Address" class="control-label">Adresse</label>
+                <textarea asp-for="Address" class="form-control" rows="2"></textarea>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="gl" class="control-label">GL</label>
+                <select asp-for="gl" class="form-select">
+                    @{
+                        foreach (var cle in gl.Keys)
+                        {
+                            <option value="" selected disabled hidden></option>
+                            <option value="@cle">@cle</option>
+
+                        }
+                    }
+                </select>
+                <span asp-validation-for="gl" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="agence" class="control-label">Agence préférée</label>
+                <select asp-for="agence" class="form-select">
+                    @{
+                        foreach (var cle in agences.Keys)
+                        {
+                            <option value="" selected disabled hidden></option>
+                            <option value="@cle">@cle</option>
+
+                        }
+                    }
+                </select>
+                <span asp-validation-for="agence" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="codePostal" class="control-label">Code Postal</label>
+                <input asp-for="codePostal" class="form-control" />
+                <span asp-validation-for="codePostal" class="text-danger"></span>
+            </div>
+            
+            <div class="col-md-6">
+                <label asp-for="Profession" class="control-label"></label>
+                <select asp-for="Profession" class="form-select">
+                    <option value="" selected disabled hidden></option>
+                    <option value="infirmiers">infirmiers</option>
+                    <option value="juristes">juristes</option>
+                    <option value="personnel naviguant commerciel">personnel naviguant commerciel</option>
+                    <option value="personnel naviguant technique">personnel naviguant technique</option>
+                    <option value="proffeseur de l'enseignement secondaire">proffeseur de l'enseignement secondaire</option>
+                    <option value="proffeseur d'université">proffeseur d'université</option>
+                    <option value="présentateur de radio et télévision">présentateur de radio et télévision</option>
+                    <option value="pécialité des sciences de la vie">spécialité des sciences de la vie</option>
+                    <option value="spécialité des science sociales et humaines">spécialité des science sociales et humaines</option>
+                    <option value="retraite">retraite</option>
+                    <option value="sans profession">sans profession</option>
+                </select>
+                <span asp-validation-for="Profession" class="text-danger"></span>
+            </div> 
+
+            <div class="col-md-6">
+                <label asp-for="Revenu" class="control-label"></label>
+                <input asp-for="Revenu" class="form-control" />
+                <span asp-validation-for="Revenu" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Gender" class="control-label">Sexe</label>
+                    <select asp-for="Gender" class="form-select">
+                        <option value="" selected disabled hidden></option>
+                        <option value="Homme">Homme</option>
+                        <option value="Femme">Femme</option>
+                    </select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="EtatCivil" class="control-label">État Civil</label>
+                <select asp-for="EtatCivil" class="form-select">
+                    <option value="" selected disabled hidden></option>
+                    <option value="celibataire">celibataire</option>
+                    <option value="marie(e)">marie(e)</option>
+                    <option value="divorce(e)">divorce(e)</option>
+                    <option value="veuf(ve)">veuf(ve)</option>
+                </select>
+                <span asp-validation-for="EtatCivil" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Objet" class="control-label"></label>
+                <input asp-for="Objet" class="form-control" />
+                <span asp-validation-for="Objet" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger" id="email"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Password" class="control-label">Mot de passe</label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="ConfirmPassword" class="control-label">Confirmez votre mot de passe</label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <a asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" class="text-decoration-none float-start mt-2">Vous avez un compte ?</a>
+                </div>
+                <div class="col-4">
+                    <input type="submit" value="Enregistrer" class="btn btn-primary btn-sm float-end" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (ViewData["ShowSuccessPopup"] != null && (bool)ViewData["ShowSuccessPopup"])
+{
+    <script type="text/javascript">
+        // Fonction pour afficher le popup avec la redirection vers une autre action du contrôleur
+        console.log("script");
+        function showPopupWithRedirectToAction() {
+            console.log("intérieur");
+            Swal.fire({
+                title: "L'utilisateur est créé avec succès",
+                icon: 'success',
+                showCancelButton: false,
+                confirmButtonText: 'OK',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirection vers une autre action du contrôleur
+                    window.location.href = '/Python/Run';
+                }
+            });
+        }
+
+        // Appel de la fonction pour afficher le popup
+        showPopupWithRedirectToAction();
+
+
+    </script>
+}
+<script>
+    var erreurElement = document.querySelector('#alert li');
+    var erreur = erreurElement ? erreurElement.innerText : '';
+
+    if (erreur !== '') {
+        console.log("okkkkk");
+        Swal.fire({
+            title: "Erreur",
+            icon: 'error',
+            html: erreur,
+            confirmButtonText: 'OK'
+        });
+    }
+</script>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

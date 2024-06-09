@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@Html.Partial("_Home") 
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    // Show the loading spinner
+    $('#loadingSpinner').show();
+    $(document).ready(function () {
+        $.ajax({
+            url: 'Python/Products',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+
+            // Hide the loading spinner
+            $('#loadingSpinner').hide();
+                // Supprimez d'abord tout contenu existant dans le conteneur
+                $('#productContainer').empty();
+
+                // Ajouter product1 au conteneur
+                if (data.product1) {
+                    var product1Html = `
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <img src="Product/${data.product1.ImageUrl}" class="card-img-top product" alt="card image">
+                            <div class="card-body">
+                                <h5 class="card-title">${data.product1.Name}</h5>
+                                <p class="card-text">${data.product1.Description}</p>
+                                    <a href="#" class="btn btn-primary">Découvrir le produit</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                    $('#productContainer').append(product1Html);
+                }
+
+                // Ajouter product2 au conteneur
+                if (data.product2) {
+                    var product2Html = `
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <img src="Product/${data.product2.ImageUrl}" class="card-img-top product" alt="card image">
+                            <div class="card-body">
+                                <h5 class="card-title">${data.product2.Name}</h5>
+                                <p class="card-text">${data.product2.Description}</p>
+                                    <a href="#" class="btn btn-primary">Découvrir le produit</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                    $('#productContainer').append(product2Html);
+                }
+
+                // Parcourez les produits de crédit et ajoutez chaque produit au conteneur
+                if (Array.isArray(data.creditProducts)) {
+                    $.each(data.creditProducts, function (index, product) {
+                        var creditProductHtml = `
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <img src="Product/${product.ImageUrl}" class="card-img-top product" alt="card image">
+                                <div class="card-body">
+                                    <h5 class="card-title">${product.Name}</h5>
+                                    <p class="card-text">${product.Description}</p>
+                                        <a href="#" class="btn btn-primary">Découvrir le produit</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                        $('#productContainer').append(creditProductHtml);
+                    });
+                }
+            },
+            error: function (xhr, status, error) {
+                // Traitement en cas d'erreur de la requête
+                console.log('Type d\'erreur : ', status);
+                console.log('Message d\'erreur : ', error);
+            }
+        });
+    });
+    document.getElementById('dropdownButton').addEventListener('click', function () {
+        document.getElementById('dropdownMenu').classList.toggle('show');
+    });
+
+</script>
+

@@ -1,0 +1,49 @@
+﻿@using AGB_Bank.ViewModels;
+
+@{
+    ViewData["Title"] = "account type";
+}
+
+    <div class="team-grid">
+        <div class="container">
+            <div class="intro" style="margin-bottom: 150px">
+                <h2 class="text-center">DEVENIR UN CLIENT </h2>
+            <p class="text-center"> Pour devenir un client, veuillez sélectionner votre segment </p>
+            </div>
+        <div class="d-flex justify-content-around">
+                <div class= mx-auto col-md-3 col-lg-3 item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register_Particulier">
+                        <div class="box">
+                            <div class="cover">
+                                <h3 class="name">Particulier</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                 <div class= mx-auto col-md-3 col-lg-3 item>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register_Professionel">
+                            <div class="box">
+                                <div class="cover">
+                                    <h3 class="name">Professionnel</h3>
+                                </div>
+                            </div>
+                    </a>
+                </div>
+            <div class= mx-auto col-md-3 col-lg-3 item>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register_Entreprise">
+                        <div class="box">
+                            <div class="cover">
+                                <h3 class="name">Entreprise</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

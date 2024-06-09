@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.containerr {
+    position: relative;
+    width: 100%;
+    min-height:100vh;
+    padding: 2rem;
+    background-color: #fafafa;
+    overflow: hidden;
+}
+body,
+input,
+textarea {
+    font-family: "Poppins", sans-serif;
+}
+
+
+ 
+.product{
+    width:100%;
+    height:300px
+}
+
+
+
+#loadingSpinner {
+    margin-top: 70px;
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    margin: auto;
+    display: none; /* Hidden by default */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+header nav a {
+    font-size: 0.94rem;
+    padding: 4px 8px;
+    border-radius: 0.2rem;
+    transition: .3s all linear;
+}
+/* header*/
+
+header img {
+    filter: grayscale(1);
+    width: 150px;
+    max-width: 100%;
+    height: auto;
+}
+
+header img:hover {
+    filter: grayscale(0);
+}
+header nav .navbar-collapse a:hover {
+    color: white;
+    background-color: #2196f38f;
+}
+header nav .navbar-collapse .dropdown a:hover {
+    color:black;
+    background-color: white;
+}
+
+dropdown
+.navbar-nav .nav-link:hover {
+    color: white;
+}
+
+
+.register {
+    width: 800px;
+}
+
+@media (max-width: 473px) {
+    .register {
+        width: 500px;
+    }
+}

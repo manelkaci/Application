@@ -1,0 +1,97 @@
+﻿@using AGB_Bank;
+@model AppUser
+
+
+<div class="container">
+    <h2>Détails de l'utilisateur</h2>
+    <p>type de client : @Model.typeClient</p>
+    
+    @if (!string.IsNullOrEmpty(Model.FirstName))
+    {
+        <p>Prénom : @Model.FirstName</p>
+    }
+    @if (!string.IsNullOrEmpty(Model.LastName))
+    {
+        <p>Nom : @Model.LastName</p>
+    }
+    
+    @{
+        var DateNaissance = @Model.dateNaissance;
+        DateTime dateActuelle = DateTime.Today;
+        int age = dateActuelle.Year - DateNaissance.Value.Year;
+        <p>Age : @age</p>
+
+    }
+    
+
+    @if (!string.IsNullOrEmpty(Model.PaysNaissance))
+    {
+        <p>Pays de naissance : @Model.PaysNaissance</p>
+    }
+    @if (!string.IsNullOrEmpty(Model.PhoneNumber))
+    {
+        <p>Numéro de téléphone : @Model.PhoneNumber</p>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.agence))
+    {
+        <p>l'agence préféré' : @Model.agence</p>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.EtatCivil))
+    {
+        <p>État civil : @Model.EtatCivil</p>
+    }
+    @if (!string.IsNullOrEmpty(Model.Gender))
+    {
+        <p>Genre : @Model.Gender</p>
+    }
+    @if (!string.IsNullOrEmpty(Model.Objet))
+    {
+        <p>Objet : @Model.Objet</p>
+    }
+@*     @if (!string.IsNullOrEmpty(Model.Profession))
+    {
+        <p>Profession : @Model.Profession</p>
+    } *@
+    @if (Model.Revenu.HasValue)
+    {
+        <p>Revenu : @Model.Revenu</p>
+    }
+    @if (Model.codePostal.HasValue)
+    {
+        <p>Code postal : @Model.codePostal</p>
+    }
+    @if (!string.IsNullOrEmpty(Model.gl))
+    {
+        <p>GL : @Model.gl</p>
+    }
+    @if (!string.IsNullOrEmpty(Model.Address))
+    {
+        <p>Adresse : @Model.Address</p>
+    }
+    @if (!string.IsNullOrEmpty(Model.Documents))
+    {
+        <p>Documents : @Model.Documents</p>
+    }
+    @if (!string.IsNullOrEmpty(Model.Registre))
+    {
+        <p>Registre : @Model.Registre</p>
+    }
+    @if (!string.IsNullOrEmpty(Model.ActivitePrincipal))
+    {
+        <p>Activité principale : @Model.ActivitePrincipal</p>
+    }
+    @if (Model.effectif.HasValue)
+    {
+        <p>effectif : @Model.effectif</p>
+    }
+    @if (!string.IsNullOrEmpty(Model.dénomination_sociale))
+    {
+        <p>dénomination sociale : @Model.dénomination_sociale</p>
+    }
+    @if (!string.IsNullOrEmpty(Model.nature_juridque))
+    {
+        <p>nature juridique : @Model.nature_juridque</p>
+    }
+</div>

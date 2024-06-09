@@ -1,0 +1,34 @@
+﻿@model IEnumerable<AGB_Bank.Models.product.carte_product> // Assurez-vous de spécifier le bon modèle de données   ||   // le nom de namespace de model puis le nom de la classe *@
+@using AGB_Bank.ViewModels;
+
+@{
+    ViewData["Title"] = "card products";
+}
+
+<style>
+    h1, h2{
+        text-align:center;
+        margin: 10px auto;
+    }
+</style>
+
+<div class="container">
+    <h1>Liste des produits</h1>
+    <h2>produits de cartes</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        @foreach (var product in Model)
+        {
+            <div class="col">
+                <div class="card">
+                    <img src="@product.ImageUrl" class="card-img-top product" alt="card image">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <a href="#" class="btn btn-primary">Découvrir le produit</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
